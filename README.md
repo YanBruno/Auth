@@ -4,7 +4,7 @@ Breve estudo sobre autenticação e autorização em API CRUD para gerencionar U
 Simples API CRUD de gerenciamento de Usuários.
 
 Idéias usadas:
--Aplicação com arquitetura DDD (Domain Driven Design);
+-Aplicação com arquitetura SOLID e DDD;
 -Tipos complexos (Entities, ValueObjects etc)
 -Banco de dados gerenciado com EntityFramework;
 -Autenticação e autorização através de JWT;
