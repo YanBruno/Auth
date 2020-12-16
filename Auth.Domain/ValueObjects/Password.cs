@@ -1,5 +1,7 @@
 ﻿using Auth.Domain.Shared.ValueObjects;
 using Flunt.Validations;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Auth.Domain.ValueObjects
@@ -21,20 +23,16 @@ namespace Auth.Domain.ValueObjects
 
         public void HidePassword()
         {
-            var count = Pass.Length;
-            var hidePass = "";
-            for (int i = 0; i <= count; i++)
-            {
-                hidePass += "*";
-            }
-            Pass = hidePass;
+            var hidePass = new StringBuilder();
+            Pass.ToList().ForEach(x => {hidePass.Append("*");});
+            Pass = hidePass.ToString();
         }
         public void Validate()
         {
             var hasNum = new Regex(@"[0-9]+");
             var hasUpper = new Regex(@"[A-Z]+");
             var hasLower = new Regex(@"[a-z]+");
-            //var hasMaxMinLen = new Regex(@".{8,10}");
+            //var hasMaxMinLen = new Regex(@".{8,10}"); este já está sendo validado por outros meios
             var hasCaracters = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
             if (!hasUpper.IsMatch(Pass)) AddNotification("Password.Pass", "A senha deve conter ao menos um caractere maiúsculo");
@@ -42,5 +40,6 @@ namespace Auth.Domain.ValueObjects
             if (!hasNum.IsMatch(Pass)) AddNotification("Password.Pass", "A senha deve conter ao menos um caractere numérico");
             if (!hasCaracters.IsMatch(Pass)) AddNotification("Password.Pass", "A senha deve conter ao menos um caractere especial");
         }
+
     }
 }

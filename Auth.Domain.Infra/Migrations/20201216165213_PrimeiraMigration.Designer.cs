@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auth.Domain.Infra.Migrations
 {
     [DbContext(typeof(AuthDataContext))]
-    [Migration("20201214193824_PrimeiraMigration")]
+    [Migration("20201216165213_PrimeiraMigration")]
     partial class PrimeiraMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,7 +88,7 @@ namespace Auth.Domain.Infra.Migrations
                             b1.Property<string>("Pass")
                                 .IsRequired()
                                 .HasColumnName("Password")
-                                .HasColumnType("varchar(10)");
+                                .HasColumnType("varchar(128)");
 
                             b1.HasKey("UserId");
 

@@ -41,7 +41,7 @@ namespace Auth.Domain.Infra.Mappings
                 pass.Property(pass => pass.Pass)
                 .IsRequired()
                 .HasColumnName("Password")
-                .HasColumnType("varchar(10)")
+                .HasColumnType("varchar(128)")
                 ;
             });
 

@@ -3,9 +3,6 @@ using Auth.Domain.Infra.Services;
 using Auth.Domain.Services;
 using Auth.Domain.ValueObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Auth.Domain.Tests.ServiceTests
 {

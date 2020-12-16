@@ -12,10 +12,10 @@ namespace Auth.Domain.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    FirstName = table.Column<string>(type: "varchar(15)", nullable: false),
-                    LastName = table.Column<string>(type: "varchar(15)", nullable: false),
-                    Email = table.Column<string>(type: "varchar(80)", nullable: false),
-                    Password = table.Column<string>(type: "varchar(10)", nullable: false),
+                    FirstName = table.Column<string>(type: "varchar(15)", nullable: true),
+                    LastName = table.Column<string>(type: "varchar(15)", nullable: true),
+                    Email = table.Column<string>(type: "varchar(80)", nullable: true),
+                    Password = table.Column<string>(type: "varchar(128)", nullable: true),
                     Role = table.Column<string>(type: "varchar(20)", nullable: false)
                 },
                 constraints: table =>

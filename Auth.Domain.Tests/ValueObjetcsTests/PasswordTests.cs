@@ -24,6 +24,14 @@ namespace Auth.Domain.Tests.ValueObjetcsTests
 
 
         [TestMethod]
+        public void Deve_retornar_somente_asteriscos()
+        {
+            _validPass.HidePassword();
+            Assert.IsTrue(true);
+        }
+
+
+        [TestMethod]
         public void Deve_retornar_false_dado_senha_invalida_sem_maiuscula()
         {
             Assert.IsFalse(_invalidPass1.Valid);

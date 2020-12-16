@@ -1,7 +1,6 @@
 ﻿using Auth.Domain.Commands;
 using Auth.Domain.Commands.UserCommands;
 using Auth.Domain.Entities;
-using Auth.Domain.Queries;
 using Auth.Domain.Repositories;
 using Auth.Domain.Services;
 using Auth.Domain.Shared.Commands;
