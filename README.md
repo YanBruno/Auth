@@ -1,5 +1,5 @@
 # Auth
-Breve estudo sobre autenticação e autorização em API CRUD para gerencionar Usuários.
+Breve estudo sobre autenticação e autorização em API CRUD para gerenciar Usuários.
 
 Simples API CRUD de gerenciamento de Usuários.
 
