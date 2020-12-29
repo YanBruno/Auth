@@ -13,7 +13,7 @@ using Auth.Domain.Handlers;
 using Auth.Domain.Services;
 using Auth.Domain.Shared;
 using System.Text;
-using Auth.Domain.Infra.SmtpEmailServer;
+
 
 namespace Auth.Domain.API
 {
@@ -29,7 +29,6 @@ namespace Auth.Domain.API
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<EmailServer, EmailServer>();
             services.AddTransient<UserHandler, UserHandler>();
 
             var key = Encoding.ASCII.GetBytes(Settings.SecretToken);
