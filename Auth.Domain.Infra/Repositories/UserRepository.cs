@@ -20,45 +20,39 @@ namespace Auth.Domain.Infra.Repositories
             _context = context;
         }
 
-        public bool CheckEmail(string email)
+        public async Task<bool> CheckEmail(string email)
         {
-            var user = _context.Users.FirstOrDefault(UserQuery.GetUserByEmail(email));
+            var user = await _context.Users.FirstOrDefaultAsync(UserQuery.GetUserByEmail(email));
             if (user == null)
                 return false;
 
             return true;
 
         }
-
+        public async Task<User> GetUser(Guid id, string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(UserQuery.GetUser(id, email));
+            return user;
+        }
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(UserQuery.GetUserByEmail(email));
+            return user;
+        }
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _context.Users.AsNoTracking().ToListAsync();
+        }
         public async Task Delete(User user)
         {
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
-
-        public User GetUser(Guid id, string email)
-        {
-            var user = _context.Users.FirstOrDefault(UserQuery.GetUser(id, email));
-            return user;
-        }
-
-        public User GetUserByEmail(string email)
-        {
-            var user = _context.Users.FirstOrDefault(UserQuery.GetUserByEmail(email));
-            return user;
-        }
-
-        public IEnumerable<User> GetUsers()
-        {
-            return _context.Users.AsNoTracking();
-        }
-
         public async Task Save(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
         }
-
         public async Task Update(User user)
         {
             _context.Users.Update(user);

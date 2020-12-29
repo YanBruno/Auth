@@ -39,7 +39,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //CheckUser
-            if (_repository.CheckEmail(command.Email))
+            if (await _repository.CheckEmail(command.Email))
                 AddNotification("Repository.CheckEmail", "Este e-mail já existe");
 
             //Criar VO'S
@@ -78,7 +78,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //GetUser
-            var user = _repository.GetUserByEmail(command.Email);
+            var user = await _repository.GetUserByEmail(command.Email);
 
             if(user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
@@ -106,11 +106,11 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //CheckNewEmail
-            if(_repository.CheckEmail(command.NewEmail))
+            if(await _repository.CheckEmail(command.NewEmail))
                 AddNotification("Check.Email", "Este e-mail já está cadastrado");
 
             //GetUser
-            var user = _repository.GetUser(command.Id, command.Email);
+            var user = await _repository.GetUser(command.Id, command.Email);
 
             if(user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
@@ -123,7 +123,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", Notifications);
 
             user.UpdateEmail(email);
-            await _repository.Update(user);
+            _ = _repository.Update(user); //Async update
 
             user.Password.HidePassword();
             //Retorna valores
@@ -138,7 +138,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //GetUser
-            var user = _repository.GetUser(command.Id, command.Email);
+            var user = await _repository.GetUser(command.Id, command.Email);
 
             if (user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
@@ -151,7 +151,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", Notifications);
 
             user.UpdateName(name);
-            await _repository.Update(user);
+            _ = _repository.Update(user);
 
             user.Password.HidePassword();
             //Retorna valores
@@ -166,7 +166,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //GetUser
-            var user = _repository.GetUser(command.Id, command.Email);
+            var user = await _repository.GetUser(command.Id, command.Email);
 
             if (user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
@@ -179,7 +179,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", Notifications);
 
             user.UpdatePassword(pass);
-            await _repository.Update(user);
+            _ = _repository.Update(user);
 
             user.Password.HidePassword();
             //Retorna valores
@@ -194,7 +194,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //GetUser
-            var user = _repository.GetUser(command.Id, command.Email);
+            var user = await _repository.GetUser(command.Id, command.Email);
 
             if (user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
@@ -206,7 +206,7 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", Notifications);
 
             user.UpdateRole(command.Role);
-            await _repository.Update(user);
+            _ = _repository.Update(user);
 
             user.Password.HidePassword();
             //Retorna valores
@@ -221,12 +221,12 @@ namespace Auth.Domain.Handlers
                 return new GenericCommandResult(false, "Ops, algo errado aconteceu!", command.Notifications);
 
             //GetUser
-            var user = _repository.GetUser(command.Id, command.Email);
+            var user =await _repository.GetUser(command.Id, command.Email);
 
             if (user == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", null);
 
-            await _repository.Delete(user);
+            _ = _repository.Delete(user);
 
             //Retorna valores
             return new GenericCommandResult(true, $"O usuário {user.Name} foi deletado com sucesso", null );

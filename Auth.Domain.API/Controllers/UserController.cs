@@ -26,9 +26,9 @@ namespace Auth.Domain.API.Controllers
         [HttpGet]
         [Route("users")]
         [Authorize(Roles = "Manager")]
-        public IEnumerable<User> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            var result = _repository.GetUsers();
+            var result = await _repository.GetUsers();
             return result;
         }
         
